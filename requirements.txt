@@ -1,0 +1,23 @@
+# Core Logic
+numpy
+pyttsx3
+sqlite3
+
+# AI Models
+torch
+transformers
+sentence-transformers
+whisper
+
+# Audio & Vision
+sounddevice
+soundfile
+opencv-python
+pytesseract
+
+# Interface
+gradio
+argparse
+
+# Optional Enhancements
+matplotlib
