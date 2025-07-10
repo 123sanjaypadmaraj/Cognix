@@ -1,3 +1,6 @@
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from core.percept import Percept
 from core.memory import PerceptDB
 
@@ -10,7 +13,7 @@ def insert_mock_data():
     ]
     for p in samples:
         db.insert(p)
-    print("[✔️] Mock data inserted.")
+        print(f"[✅ Inserted]: {p.text}")
 
 if __name__ == "__main__":
     insert_mock_data()
