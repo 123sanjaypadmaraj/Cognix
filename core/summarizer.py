@@ -9,10 +9,7 @@ from core.personalization import analyze_user_trends
 speaker = VoiceOutput()
 
 
-emotions = [row[6] for row in db.get_all_percepts()]
-counts = Counter(emotions)
-dominant = counts.most_common(1)[0][0]
-summary += f"\nEmotion trend: You mostly felt {dominant} today."
+
 
 def summarize_day():
     db = PerceptDB()

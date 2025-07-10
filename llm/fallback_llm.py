@@ -2,24 +2,23 @@
 # llm/fallback_llm.py – LLM Query Fallback
 # =====================================
 
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 import torch
 
-# You can change this model to any small open LLM from HuggingFace
-MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.1"
+MODEL_NAME = "google/flan-t5-base"
 
 print("[🤖 Loading fallback LLM...]")
+
+# Load tokenizer and model (CPU-safe)
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModelForCausalLM.from_pretrained(MODEL_NAME, torch_dtype=torch.float16, device_map="auto")
+model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
 
-
-def query_fallback_llm(prompt):
-    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(model.device)
-    output_ids = model.generate(input_ids, max_length=300, do_sample=True, top_k=50, temperature=0.7)
-    output = tokenizer.decode(output_ids[0], skip_special_tokens=True)
-    print(f"[🧠 LLM Response]: {output}")
-    return output
-
+def query_fallback_llm(prompt: str) -> str:
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True)
+    outputs = model.generate(**inputs, max_new_tokens=100, do_sample=True, temperature=0.7)
+    result = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    print(f"[🧠 LLM Response]: {result}")
+    return result
 
 # === Example ===
 if __name__ == "__main__":
