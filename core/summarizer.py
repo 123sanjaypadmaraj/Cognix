@@ -4,8 +4,15 @@
 
 from core.memory import PerceptDB
 from utils.voice_output import VoiceOutput
+from core.personalization import analyze_user_trends
 
 speaker = VoiceOutput()
+
+
+emotions = [row[6] for row in db.get_all_percepts()]
+counts = Counter(emotions)
+dominant = counts.most_common(1)[0][0]
+summary += f"\nEmotion trend: You mostly felt {dominant} today."
 
 def summarize_day():
     db = PerceptDB()
@@ -20,6 +27,7 @@ def summarize_day():
         line = f"[{hour}] {text[:80]}...\n"
         summary += line
         print(line.strip())
+        summary += "\n\n" + analyze_user_trends()
 
     print("\n[🗣️ Speaking Summary...]")
     speaker.say(summary)
