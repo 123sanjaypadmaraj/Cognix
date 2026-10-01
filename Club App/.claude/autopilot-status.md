@@ -72,6 +72,6 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 
 ### 2026-10-01 — autopilot run 2 (loop wakeup)
 - Picked up: CI workflow, error/not-found/loading boundaries, silent mutation errors.
-- Done: CI workflow  (lint, tsc, test on Node 20; ran each step locally, cannot run Actions here).
-- Blocked (code written; tsc, lint and 21 unit tests pass, but no automated test covers the area): boundaries — needs manual check that  shows the 404 and a thrown dashboard error shows the boundary; per Next 16 docs  uses the  prop (not ). Silent mutation errors — needs manual check of the ?error= flash on each action; all listed actions now check errors.
+- Done: CI workflow at club-hub/.github/workflows/ci.yml (lint, tsc, test on Node 20; ran each step locally, cannot run Actions here).
+- Blocked (code written; tsc, lint and 21 unit tests pass, but no automated test covers the area): boundaries — needs manual check that /clubs/does-not-exist shows the 404 and a thrown dashboard error shows the boundary; per Next 16 docs error.tsx uses the retry prop (not reset). Silent mutation errors — needs manual check of the ?error= flash on each action; all listed actions now check errors.
 - Not pushed (see earlier note on remote). Next: password change, .ics, then the 4 new planner tasks.
