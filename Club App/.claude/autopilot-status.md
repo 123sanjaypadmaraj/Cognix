@@ -14,7 +14,7 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - [blocked] **Add error, not-found and loading boundaries**
   Add `src/app/error.tsx` (client component with a friendly message and a "Try again" button calling `reset()`), `src/app/not-found.tsx` (links back to `/` and `/events`), and `src/app/dashboard/loading.tsx` (simple skeleton using existing `card` styles). Done when an unknown `/clubs/does-not-exist` shows the custom 404 and a thrown error in a dashboard page renders the error boundary instead of the default Next screen.
 
-- [pending] **Let signed-in users change their own password**
+- [done] **Let signed-in users change their own password**
   Admin hands leads a temporary password (README "Day to day") but there is no way to change it. Add `/dashboard/account` page with current password + new password (min 8 chars) + confirm; the server action re-verifies the current password via `signInWithPassword` for the profile's email, then calls `supabase.auth.updateUser({ password })`, redirecting with the existing `?ok=`/`?error=` flash pattern. Link it from `DashNav`.
 
 - [blocked] **Surface errors from silent dashboard mutations**
@@ -29,13 +29,13 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - [done] **Add participant search to the event check-in list**
   On `src/app/dashboard/clubs/[slug]/events/[id]/page.tsx`, add a GET form (`?q=`) above the participants table that filters registrations by case-insensitive substring match on name, email or roll_no (do the filtering in JS on the already-fetched list so the Stat counts stay totals; show "Showing N of M" and a "Clear" link when `q` is set). Preserve `q` across check-in toggles: pass it through to `toggleAttendanceAction`/`removeParticipantAction` redirects, or append it to the redirect path, so a lead checking people in at the door does not lose the filter after every click.
 
-- [pending] **Add a "Duplicate event" action for leads**
+- [done] **Add a "Duplicate event" action for leads**
   Add `duplicateEventAction(slug, eventId)` in `src/app/dashboard/actions.ts` that copies an event the lead can access (title suffixed " (copy)", same category/venue/description/capacity/external URLs, `starts_at`/`ends_at` shifted +7 days, `status` = draft, `registration_open` = true, no registrations/feedback copied), then redirects to the new event's manage page with `?ok=Event duplicated as draft`. Add a "Duplicate" button next to the existing public-page links on the manage-event page. Recurring weekly club meetups are the main use case.
 
 - [done] **Add category and club filters to the public events page**
   `src/app/events/page.tsx` shows every club's events with no filtering. Accept `?category=` and `?club=<slug>` searchParams, apply them as `.eq("category", …)` and an `.eq("club_id", …)` filter (resolve the slug to an id first; ignore unknown values), and render a row of filter links/chips (categories taken from the `EventForm` category options, clubs from active clubs) with an "All" reset. Also show events that have started but not yet ended (`ends_at > now`) under "Upcoming" with a "Happening now" badge instead of under "Recent".
 
-- [pending] **Add share-friendly metadata to public event and club pages**
+- [done] **Add share-friendly metadata to public event and club pages**
   Extend `generateMetadata` in `src/app/events/[id]/page.tsx` and `src/app/clubs/[slug]/page.tsx` to return `description` (event: date in IST via `fmtDateTime` + venue + first ~150 chars of description; club: its description/tagline) and matching `openGraph` `{ title, description, type }` fields, so links shared in WhatsApp/Instagram show a useful preview. Set `metadataBase` in the root layout from `process.env.NEXT_PUBLIC_SITE_URL` when it is set (add it to `.env.example` as optional). Do not generate OG images.
 
 ## Run log
@@ -108,3 +108,11 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - Picked up and finished: /events category and club filters. New src/lib/categories.ts (EVENT_CATEGORIES now shared with EventForm, pickFilter ignores unknown values; 2 unit tests). /events accepts ?category= and ?club=<slug>, shows filter chips with All resets, and lists in-progress events (started, ends_at in the future) under Upcoming with a "Happening now" badge. Events with no ends_at are not treated as in progress.
 - Checks: 29/29 tests pass, tsc clean, lint clean. Not exercised against a real database (no Supabase credentials in club-hub, dev server on :3001 returns 500 without them).
 - Not pushed (remote/hosting question open with the user). Next: password change, duplicate event, share metadata; blocked items still await a manual check once the app can run.
+
+### 2026-10-01 — autopilot run 6 (user-requested)
+- Picked up all three remaining pending tasks.
+- Password change: /dashboard/account page, changePasswordAction (re-verifies current password via signInWithPassword, then updateUser), "Account" link in DashNav; validation in src/lib/password.ts (tests). Auth calls themselves cannot be tested without Supabase.
+- Duplicate event: duplicateEventAction + "Duplicate" button on the manage-event page; row builder in src/lib/events.ts (+7 days, draft, registration reopened, budget spend reset to 0, tests).
+- Share metadata: description + openGraph for event and club pages, metadataBase from optional NEXT_PUBLIC_SITE_URL (added to .env.example); text builder in src/lib/events.ts (tests).
+- Checks: 35/35 tests pass, tsc clean, lint clean. None of the three has run against a real Supabase yet.
+- Pending list is now empty. Still blocked on a manual check: boundaries, silent mutation errors. Needs from user: Supabase keys in club-hub/.env.local, then manual verification, then the host/push decision. Not pushed.

@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { SubmitButton } from "@/components/SubmitButton";
 import { ExtLink, Field, Notice } from "@/components/ui";
 import { fmtDateTime } from "@/lib/format";
+import { eventShareDescription } from "@/lib/events";
 import { registerForEvent } from "@/app/actions";
 import type { Club, ClubEvent } from "@/lib/types";
 
@@ -22,7 +23,10 @@ async function load(id: string) {
 export async function generateMetadata({ params }: PageProps<"/events/[id]">): Promise<Metadata> {
   const { id } = await params;
   const r = await load(id);
-  return { title: r?.event.title ?? "Event" };
+  if (!r) return { title: "Event" };
+  const { title, starts_at, venue, description } = r.event;
+  const text = eventShareDescription(fmtDateTime(starts_at), venue, description);
+  return { title, description: text, openGraph: { title, description: text, type: "website" } };
 }
 
 export default async function EventPage({ params, searchParams }: PageProps<"/events/[id]">) {

@@ -10,7 +10,8 @@ export function DashNav({ isAdmin }: { isAdmin: boolean }) {
         { href: "/dashboard/clubs", label: "Clubs", match: (p: string) => p.startsWith("/dashboard/clubs") },
         { href: "/dashboard/leads", label: "Club leads", match: (p: string) => p.startsWith("/dashboard/leads") },
       ]
-    : [{ href: "/dashboard", label: "My clubs", match: (p: string) => p.startsWith("/dashboard") }];
+    : [{ href: "/dashboard", label: "My clubs", match: (p: string) => p.startsWith("/dashboard") && !p.startsWith("/dashboard/account") }];
+  items.push({ href: "/dashboard/account", label: "Account", match: (p: string) => p.startsWith("/dashboard/account") });
   return (
     <nav className="mb-6 flex gap-1 rounded-lg border border-line bg-surface p-1 text-sm">
       {items.map((i) => (

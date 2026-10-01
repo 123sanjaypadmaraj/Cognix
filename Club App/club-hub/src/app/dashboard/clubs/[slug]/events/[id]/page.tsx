@@ -9,7 +9,7 @@ import { Empty, Field, Notice, Stat } from "@/components/ui";
 import { fmtDate, fmtDateTime, pct } from "@/lib/format";
 import { filterRegistrations } from "@/lib/participants";
 import {
-  addParticipantAction, deleteEventAction, removeParticipantAction, saveEventAction, toggleAttendanceAction,
+  addParticipantAction, deleteEventAction, duplicateEventAction, removeParticipantAction, saveEventAction, toggleAttendanceAction,
 } from "@/app/dashboard/actions";
 import type { ClubEvent, Feedback, Registration } from "@/lib/types";
 
@@ -45,6 +45,9 @@ export default async function EventAdminPage({ params, searchParams }: PageProps
         <div className="flex flex-wrap gap-2 text-sm">
           <Link href={publicUrl} className="btn">Public page ↗</Link>
           <Link href={`${publicUrl}/feedback`} className="btn">Feedback page ↗</Link>
+          <form action={duplicateEventAction.bind(null, slug, event.id)}>
+            <SubmitButton className="btn" pendingText="Duplicating…">Duplicate</SubmitButton>
+          </form>
         </div>
       </div>
       <Notice ok={typeof sp.ok === "string" ? sp.ok : undefined} error={typeof sp.error === "string" ? sp.error : undefined} />

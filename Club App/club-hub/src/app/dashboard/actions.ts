@@ -2,10 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { requireAdmin, requireClubAccess } from "@/lib/auth";
+import { requireAdmin, requireClubAccess, requireProfile } from "@/lib/auth";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
 import { parseCsv } from "@/lib/csv";
 import { fromLocalInput, int, safeUrl, str } from "@/lib/format";
+import { duplicateEventRow } from "@/lib/events";
+import { validatePasswordChange } from "@/lib/password";
+import type { ClubEvent } from "@/lib/types";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -143,6 +146,18 @@ export async function addParticipantAction(slug: string, eventId: string, formDa
   });
   if (error) return go(back, "error", error.code === "23505" ? "That email is already registered." : "Could not add participant.");
   return go(back, "ok", "Participant added.");
+}
+
+export async function duplicateEventAction(slug: string, eventId: string) {
+  const { club } = await requireClubAccess(slug);
+  const back = `/dashboard/clubs/${slug}/events/${eventId}`;
+  const supabase = await createClient();
+  const { data: src } = await supabase.from("events").select("*").eq("id", eventId).eq("club_id", club.id).maybeSingle();
+  if (!src) return go(`/dashboard/clubs/${slug}/events`, "error", "Event not found.");
+  const { data, error } = await supabase.from("events").insert(duplicateEventRow(src as ClubEvent)).select("id").single();
+  if (error || !data) return go(back, "error", "Could not duplicate the event.");
+  revalidatePath("/", "layout");
+  return go(`/dashboard/clubs/${slug}/events/${data.id}`, "ok", "Event duplicated as draft");
 }
 
 export async function toggleAttendanceAction(slug: string, eventId: string, regId: string, attended: boolean) {
@@ -310,4 +325,23 @@ export async function unassignLeadAction(userId: string, clubId: string) {
   const { error } = await supabase.from("club_leads").delete().eq("user_id", userId).eq("club_id", clubId);
   if (error) return go("/dashboard/leads", "error", "Could not unassign the lead.");
   revalidatePath("/dashboard/leads");
+}
+
+/* ---------------------------------------------------------------- account */
+
+export async function changePasswordAction(formData: FormData) {
+  const profile = await requireProfile();
+  const back = "/dashboard/account";
+  const current = String(formData.get("current") ?? "");
+  const next = String(formData.get("next") ?? "");
+  const invalid = validatePasswordChange(current, next, String(formData.get("confirm") ?? ""));
+  if (invalid) return go(back, "error", invalid);
+  if (!profile.email) return go(back, "error", "Your account has no email on file.");
+
+  const supabase = await createClient();
+  const { error: verifyErr } = await supabase.auth.signInWithPassword({ email: profile.email, password: current });
+  if (verifyErr) return go(back, "error", "Current password is incorrect.");
+  const { error } = await supabase.auth.updateUser({ password: next });
+  if (error) return go(back, "error", "Could not update the password.");
+  return go(back, "ok", "Password updated.");
 }

@@ -9,8 +9,10 @@ import type { Announcement, Club } from "@/lib/types";
 export async function generateMetadata({ params }: PageProps<"/clubs/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const supabase = await createClient();
-  const { data } = await supabase.from("clubs").select("name, tagline").eq("slug", slug).maybeSingle();
-  return { title: data?.name ?? "Club", description: data?.tagline ?? undefined };
+  const { data } = await supabase.from("clubs").select("name, tagline, description").eq("slug", slug).maybeSingle();
+  const title = data?.name ?? "Club";
+  const description = data?.tagline ?? data?.description ?? undefined;
+  return { title, description, openGraph: { title, description, type: "website" } };
 }
 
 export default async function ClubPage({ params }: PageProps<"/clubs/[slug]">) {
