@@ -23,7 +23,7 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - [done] **Parse member CSV imports with a real CSV parser**
   `importMembersAction` splits each line on `,`, so quoted fields like `"Shah, Riya"` or a department containing a comma shift every column. Add a small RFC 4180-style `parseCsv(text): string[][]` to `src/lib/csv.ts` (handles quoted fields, escaped `""`, CRLF) with no new dependency, use it in `importMembersAction`, and skip rows whose email (when present) fails the existing `EMAIL` regex, reporting the skipped count in the success message. Add unit tests for `parseCsv` if the test setup exists.
 
-- [pending] **Add "Add to calendar" (.ics) download for public events**
+- [done] **Add "Add to calendar" (.ics) download for public events**
   Add a route handler `src/app/events/[id]/calendar/route.ts` returning a single-VEVENT `text/calendar` file (UID = event id, DTSTART/DTEND in UTC, default end = start + 1h when `ends_at` is null, SUMMARY, LOCATION = venue, DESCRIPTION incl. the public event URL, proper text escaping and 75-octet line folding) for events visible to anon (RLS already hides drafts; return 404 when not found or id is not a UUID). Link it from `src/app/events/[id]/page.tsx` as "Add to calendar".
 
 - [pending] **Add participant search to the event check-in list**
@@ -75,3 +75,14 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - Done: CI workflow at club-hub/.github/workflows/ci.yml (lint, tsc, test on Node 20; ran each step locally, cannot run Actions here).
 - Blocked (code written; tsc, lint and 21 unit tests pass, but no automated test covers the area): boundaries — needs manual check that /clubs/does-not-exist shows the 404 and a thrown dashboard error shows the boundary; per Next 16 docs error.tsx uses the retry prop (not reset). Silent mutation errors — needs manual check of the ?error= flash on each action; all listed actions now check errors.
 - Not pushed (see earlier note on remote). Next: password change, .ics, then the 4 new planner tasks.
+
+### 2026-10-01 — planner run (third)
+- Surveyed: the full status file (task list and run log), git history (`club-hub/` has 2 autopilot commits since the last planner run, bf4e9de and 170f0e4; 747c974 only changed log wording), and the current `src/` tree. That tree now includes `error.tsx`, `not-found.tsx`, `dashboard/loading.tsx` and 3 test files. No TODO/FIXME/XXX markers in `src/` or `supabase/`.
+- Added: nothing. Six tasks are still pending and none has been started (password change, .ics, check-in search, duplicate event, /events filters, share metadata). Two more are blocked waiting for manual verification (boundaries, silent mutation errors). That is several autopilot sessions of concrete work, so adding more would only pad the list.
+- Not added (still deferred, reasons unchanged from earlier runs): server-action tests with Supabase mocking (better done once the blocked mutation-error work is verified), form spam protection, the registration capacity race, and pagination.
+
+### 2026-10-01 — autopilot run 3 (loop wakeup)
+- Planner added no new tasks (backlog already large).
+- Picked up and finished: .ics download. Pure builder in src/lib/ics.ts (escaping, 75-octet folding, default 1h end) with 3 unit tests; route at src/app/events/[id]/calendar/route.ts (404 for non-UUID or non-published); "Add to calendar" button on the event page.
+- Checks: 24/24 tests pass, tsc clean, lint clean. The route and button themselves have not been exercised in a running app (no dev server run) — worth a quick manual download check.
+- Not pushed (remote question still open). Next: password change, then check-in search, duplicate event, /events filters, share metadata. Blocked items still await a manual check.

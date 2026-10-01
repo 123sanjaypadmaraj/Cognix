@@ -62,6 +62,9 @@ export default async function EventPage({ params, searchParams }: PageProps<"/ev
             <dd className="inline">{registered}{event.capacity ? ` / ${event.capacity}` : ""}{full ? " (full)" : ""}</dd>
           </div>
         </dl>
+        {event.status === "published" && (
+          <p className="mt-3"><a href={`/events/${event.id}/calendar`} className="btn">Add to calendar</a></p>
+        )}
         {event.description && <p className="mt-4 whitespace-pre-line">{event.description}</p>}
       </header>
 
