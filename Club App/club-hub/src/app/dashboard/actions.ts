@@ -148,18 +148,20 @@ export async function addParticipantAction(slug: string, eventId: string, formDa
 export async function toggleAttendanceAction(slug: string, eventId: string, regId: string, attended: boolean) {
   await requireClubAccess(slug);
   const supabase = await createClient();
-  await supabase
+  const { error } = await supabase
     .from("event_registrations")
     .update({ attended, attended_at: attended ? new Date().toISOString() : null })
     .eq("id", regId)
     .eq("event_id", eventId);
+  if (error) return go(`/dashboard/clubs/${slug}/events/${eventId}`, "error", "Could not update attendance.");
   revalidatePath(`/dashboard/clubs/${slug}/events/${eventId}`);
 }
 
 export async function removeParticipantAction(slug: string, eventId: string, regId: string) {
   await requireClubAccess(slug);
   const supabase = await createClient();
-  await supabase.from("event_registrations").delete().eq("id", regId).eq("event_id", eventId);
+  const { error } = await supabase.from("event_registrations").delete().eq("id", regId).eq("event_id", eventId);
+  if (error) return go(`/dashboard/clubs/${slug}/events/${eventId}`, "error", "Could not remove the participant.");
   revalidatePath(`/dashboard/clubs/${slug}/events/${eventId}`);
 }
 
@@ -223,14 +225,16 @@ export async function importMembersAction(slug: string, formData: FormData) {
 export async function setMemberStatusAction(slug: string, memberId: string, status: "active" | "alumni" | "inactive") {
   const { club } = await requireClubAccess(slug);
   const supabase = await createClient();
-  await supabase.from("club_members").update({ status }).eq("id", memberId).eq("club_id", club.id);
+  const { error } = await supabase.from("club_members").update({ status }).eq("id", memberId).eq("club_id", club.id);
+  if (error) return go(`/dashboard/clubs/${slug}/members`, "error", "Could not update the member's status.");
   revalidatePath(`/dashboard/clubs/${slug}/members`);
 }
 
 export async function removeMemberAction(slug: string, memberId: string) {
   const { club } = await requireClubAccess(slug);
   const supabase = await createClient();
-  await supabase.from("club_members").delete().eq("id", memberId).eq("club_id", club.id);
+  const { error } = await supabase.from("club_members").delete().eq("id", memberId).eq("club_id", club.id);
+  if (error) return go(`/dashboard/clubs/${slug}/members`, "error", "Could not remove the member.");
   revalidatePath(`/dashboard/clubs/${slug}/members`);
 }
 
@@ -253,7 +257,8 @@ export async function addAnnouncementAction(slug: string, formData: FormData) {
 export async function deleteAnnouncementAction(slug: string, id: string) {
   const { club } = await requireClubAccess(slug);
   const supabase = await createClient();
-  await supabase.from("announcements").delete().eq("id", id).eq("club_id", club.id);
+  const { error } = await supabase.from("announcements").delete().eq("id", id).eq("club_id", club.id);
+  if (error) return go(`/dashboard/clubs/${slug}/announcements`, "error", "Could not delete the announcement.");
   revalidatePath("/", "layout");
 }
 
@@ -276,8 +281,14 @@ export async function createLeadAction(formData: FormData) {
   if (error || !data.user) {
     return go(back, "error", /already|registered/i.test(error?.message ?? "") ? "An account with that email already exists — assign it to a club below instead." : "Could not create the account.");
   }
-  if (full_name) await svc.from("profiles").update({ full_name }).eq("id", data.user.id);
-  if (clubIds.length) await svc.from("club_leads").insert(clubIds.map((club_id) => ({ club_id, user_id: data.user.id })));
+  if (full_name) {
+    const { error: nameErr } = await svc.from("profiles").update({ full_name }).eq("id", data.user.id);
+    if (nameErr) return go(back, "error", `Account created for ${email}, but saving the name failed.`);
+  }
+  if (clubIds.length) {
+    const { error: assignErr } = await svc.from("club_leads").insert(clubIds.map((club_id) => ({ club_id, user_id: data.user.id })));
+    if (assignErr) return go(back, "error", "Account created but club assignment failed — assign it below.");
+  }
   revalidatePath("/dashboard/leads");
   return go(back, "ok", `Lead account created for ${email}.`);
 }
@@ -288,13 +299,15 @@ export async function assignLeadAction(formData: FormData) {
   const clubId = String(formData.get("club_id"));
   if (!userId || !clubId) return go("/dashboard/leads", "error", "Pick a club.");
   const supabase = await createClient();
-  await supabase.from("club_leads").upsert({ club_id: clubId, user_id: userId });
+  const { error } = await supabase.from("club_leads").upsert({ club_id: clubId, user_id: userId });
+  if (error) return go("/dashboard/leads", "error", "Could not assign the lead to that club.");
   revalidatePath("/dashboard/leads");
 }
 
 export async function unassignLeadAction(userId: string, clubId: string) {
   await requireAdmin();
   const supabase = await createClient();
-  await supabase.from("club_leads").delete().eq("user_id", userId).eq("club_id", clubId);
+  const { error } = await supabase.from("club_leads").delete().eq("user_id", userId).eq("club_id", clubId);
+  if (error) return go("/dashboard/leads", "error", "Could not unassign the lead.");
   revalidatePath("/dashboard/leads");
 }
