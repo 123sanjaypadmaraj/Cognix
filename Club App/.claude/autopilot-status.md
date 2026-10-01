@@ -32,7 +32,7 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - [pending] **Add a "Duplicate event" action for leads**
   Add `duplicateEventAction(slug, eventId)` in `src/app/dashboard/actions.ts` that copies an event the lead can access (title suffixed " (copy)", same category/venue/description/capacity/external URLs, `starts_at`/`ends_at` shifted +7 days, `status` = draft, `registration_open` = true, no registrations/feedback copied), then redirects to the new event's manage page with `?ok=Event duplicated as draft`. Add a "Duplicate" button next to the existing public-page links on the manage-event page. Recurring weekly club meetups are the main use case.
 
-- [pending] **Add category and club filters to the public events page**
+- [done] **Add category and club filters to the public events page**
   `src/app/events/page.tsx` shows every club's events with no filtering. Accept `?category=` and `?club=<slug>` searchParams, apply them as `.eq("category", …)` and an `.eq("club_id", …)` filter (resolve the slug to an id first; ignore unknown values), and render a row of filter links/chips (categories taken from the `EventForm` category options, clubs from active clubs) with an "All" reset. Also show events that have started but not yet ended (`ends_at > now`) under "Upcoming" with a "Happening now" badge instead of under "Recent".
 
 - [pending] **Add share-friendly metadata to public event and club pages**
@@ -97,3 +97,14 @@ Note: `club-hub/AGENTS.md` warns that this Next.js version has breaking changes;
 - Picked up and finished: check-in participant search. Pure filter in src/lib/participants.ts (3 unit tests) wired into the manage-event page with a ?q= GET form, "Showing N of M", Clear link and an empty-match message.
 - Checks: 27/27 tests pass, tsc clean, lint clean. Not exercised in a running app. Assumption to verify by hand: successful check-in toggles use revalidatePath (no redirect), so the ?q= URL should persist; only the error redirect path drops q.
 - Not pushed (remote question still open). Next: password change, duplicate event, /events filters, share metadata; blocked items still await a manual check.
+
+### 2026-10-01 — planner run (fifth)
+- Surveyed: the full status file (task list and run log), `git log --oneline -30` (the only new commit since the last planner run is 0c8a6bc, check-in search), `club-hub/package.json`, the top-level, `src/app` and `src/lib` layout, and a TODO/FIXME/XXX grep of `src/`, which found none.
+- Added: nothing. Four tasks are still pending and none has been started: password change, duplicate event, /events filters, and share metadata. Two more (boundaries, silent mutation errors) are blocked until someone checks them by hand. That is still several sessions of concrete work, so new tasks would only pad the list.
+- Not added (reasons unchanged from earlier runs): server-action tests with Supabase mocking, form spam protection, the registration capacity race, and pagination. Also not added: a follow-up to keep `?q=` on the error-redirect path of check-in toggles. Autopilot run 4 flagged this as a manual check, and it is a small edge case.
+
+### 2026-10-01 — autopilot run 5 (loop wakeup)
+- Planner added no new tasks.
+- Picked up and finished: /events category and club filters. New src/lib/categories.ts (EVENT_CATEGORIES now shared with EventForm, pickFilter ignores unknown values; 2 unit tests). /events accepts ?category= and ?club=<slug>, shows filter chips with All resets, and lists in-progress events (started, ends_at in the future) under Upcoming with a "Happening now" badge. Events with no ends_at are not treated as in progress.
+- Checks: 29/29 tests pass, tsc clean, lint clean. Not exercised against a real database (no Supabase credentials in club-hub, dev server on :3001 returns 500 without them).
+- Not pushed (remote/hosting question open with the user). Next: password change, duplicate event, share metadata; blocked items still await a manual check once the app can run.

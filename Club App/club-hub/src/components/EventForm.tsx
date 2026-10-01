@@ -1,9 +1,10 @@
 import { SubmitButton } from "@/components/SubmitButton";
 import { Field } from "@/components/ui";
+import { EVENT_CATEGORIES } from "@/lib/categories";
 import { toLocalInput } from "@/lib/format";
 import type { ClubEvent } from "@/lib/types";
 
-const CATEGORIES = ["Workshop", "Competition", "Talk", "Social", "Meeting", "Performance", "Volunteering", "Other"];
+const CATEGORIES = EVENT_CATEGORIES;
 
 export function EventForm({ action, event }: { action: (fd: FormData) => Promise<void>; event?: ClubEvent }) {
   return (
