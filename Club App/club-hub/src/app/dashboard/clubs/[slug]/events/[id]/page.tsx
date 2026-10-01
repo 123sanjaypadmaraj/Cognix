@@ -7,6 +7,7 @@ import { ConfirmButton, SubmitButton } from "@/components/SubmitButton";
 import { Stars } from "@/components/charts";
 import { Empty, Field, Notice, Stat } from "@/components/ui";
 import { fmtDate, fmtDateTime, pct } from "@/lib/format";
+import { filterRegistrations } from "@/lib/participants";
 import {
   addParticipantAction, deleteEventAction, removeParticipantAction, saveEventAction, toggleAttendanceAction,
 } from "@/app/dashboard/actions";
@@ -31,6 +32,8 @@ export default async function EventAdminPage({ params, searchParams }: PageProps
   ]);
   const registrations = (regs as Registration[]) ?? [];
   const feedback = (fb as Feedback[]) ?? [];
+  const q = typeof sp.q === "string" ? sp.q.trim() : "";
+  const shown = filterRegistrations(registrations, q);
   const attended = registrations.filter((r) => r.attended).length;
   const avg = feedback.length ? feedback.reduce((a, f) => a + f.rating, 0) / feedback.length : null;
   const publicUrl = `/events/${event.id}`;
@@ -78,8 +81,23 @@ export default async function EventAdminPage({ params, searchParams }: PageProps
           </form>
         </details>
 
+        {registrations.length > 0 && (
+          <form method="get" className="mb-3 flex flex-wrap items-center gap-2">
+            <input name="q" defaultValue={q} placeholder="Search name, email or roll no" className="input max-w-xs" aria-label="Search participants" />
+            <button type="submit" className="btn">Search</button>
+            {q && (
+              <>
+                <Link href={`/dashboard/clubs/${slug}/events/${event.id}`} className="text-sm text-brand hover:underline">Clear</Link>
+                <span className="text-sm text-muted">Showing {shown.length} of {registrations.length}</span>
+              </>
+            )}
+          </form>
+        )}
+
         {registrations.length === 0 ? (
           <Empty>No registrations yet.</Empty>
+        ) : shown.length === 0 ? (
+          <Empty>No participants match “{q}”.</Empty>
         ) : (
           <div className="card overflow-x-auto !p-0">
             <table className="w-full min-w-[820px]">
@@ -90,7 +108,7 @@ export default async function EventAdminPage({ params, searchParams }: PageProps
                 </tr>
               </thead>
               <tbody className="divide-y divide-line">
-                {registrations.map((r) => (
+                {shown.map((r) => (
                   <tr key={r.id}>
                     <td className="td font-medium">{r.full_name}</td>
                     <td className="td text-muted">{r.email}</td>
