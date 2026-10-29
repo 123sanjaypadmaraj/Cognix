@@ -1,6 +1,55 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>MAD Club Admin</title></head><body>
-<script src="https://unpkg.com/decap-cms@3.1.10/dist/decap-cms.js"></script>
+<title>MAD Club Admin</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head><body>
+<div id="login" class="login" hidden>
+  <form id="login-form" class="login-card" autocomplete="on">
+    <p class="brand">MAD Club <small>admin</small></p>
+    <h1>Sign in</h1>
+    <label>Username<input id="u" name="username" autocomplete="username" required autofocus></label>
+    <label>Password<input id="p" name="password" type="password" autocomplete="current-password" required></label>
+    <p class="err" id="err" role="alert" hidden>Wrong username or password.</p>
+    <button class="btn primary" type="submit">Sign in</button>
+    <p class="note">Testing login: <code>admin</code> / <code>admin</code>. This check runs in the browser, so it is not secure. Use the GitHub editor (link inside) for real publishing.</p>
+  </form>
+</div>
+
+<div id="app" class="app" hidden>
+  <aside class="side">
+    <p class="brand">MAD Club <small>admin</small></p>
+    <nav id="tabs" aria-label="Sections"></nav>
+    <div class="side-foot">
+      <a href="../index.html" target="_blank" rel="noopener">View live site</a>
+      <a href="cms/">GitHub editor (Decap)</a>
+      <button id="logout" class="link" type="button">Sign out</button>
+    </div>
+  </aside>
+  <section class="editor">
+    <div class="bar">
+      <div><h2 id="title"></h2><p class="status" id="status" aria-live="polite"></p></div>
+      <div class="bar-actions">
+        <button class="btn" id="dl" type="button">Download JSON</button>
+        <button class="btn danger" id="reset" type="button">Discard my edits</button>
+      </div>
+    </div>
+    <div id="form" class="form"></div>
+  </section>
+  <section class="preview">
+    <div class="bar">
+      <h2>Live preview</h2>
+      <div class="seg" id="dev" role="group" aria-label="Preview size">
+        <button data-w="100%" aria-pressed="true" type="button">Desktop</button>
+        <button data-w="768px" aria-pressed="false" type="button">Tablet</button>
+        <button data-w="390px" aria-pressed="false" type="button">Phone</button>
+      </div>
+    </div>
+    <div class="frame-wrap"><iframe id="frame" title="Site preview"></iframe></div>
+  </section>
+</div>
+<script src="admin.js"></script>
 </body></html>

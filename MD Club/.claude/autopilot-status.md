@@ -76,3 +76,9 @@ Design decisions already made (so no task needs to ask):
 - Built: content/*.json, admin/ (Decap 3.1.10 + config.yml), assets/site.js renderer, assets/style.css skins, regenerated 8 page shells, favicon, robots.txt, README.md setup.
 - Verified: node --check ok; headless screenshots of all three skins; /admin/ renders the Decap login. Not verified: real GitHub login (needs repo + OAuth setup), 360px mobile, Lighthouse.
 - Next: user sets repo/OAuth in README; then mobile and a11y pass; add real event photos via /admin.
+
+### 2026-10-29 - interactivity + test admin
+- Added to the site: Ctrl+K command menu, live event search with year filter, team committee filter, card tilt, magnetic buttons, cursor follower, clickable and parallax hero phone.
+- Added /admin/ testing editor (admin/admin, client-side only): schema-driven forms, live preview, drafts in localStorage that site.js reads, Download JSON. Decap moved to /admin/cms/.
+- Verified in Chrome: wrong and right login, edit propagates to preview, add event, search, year filter, palette, skin switch, phone click, team filter; no console errors.
+- Not verified: touch devices, 360px, GitHub login.
