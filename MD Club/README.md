@@ -1,6 +1,6 @@
 # MAD Club site
 
-Static site with a visual CMS (Decap) at `/admin/`. All text, events, team and photos live in `content/*.json` and `photos/`, and the pages are built from them in the browser.
+Static site with a visual editor at `/admin/` and a GitHub-backed CMS (Decap) at `/admin/cms/`. All text, events, team and photos live in `content/*.json` and `photos/`, and the pages are built from them in the browser.
 
 ## Two editors
 
@@ -11,11 +11,11 @@ Static site with a visual CMS (Decap) at `/admin/`. All text, events, team and p
 ## One-time setup (for the GitHub editor)
 
 1. Push this folder to a GitHub repo (branch `main`).
-2. In `admin/config.yml` replace `YOUR_GITHUB_USERNAME/YOUR_REPO` (three places).
+2. In `admin/cms/config.yml` replace `YOUR_GITHUB_USERNAME/YOUR_REPO` (three places).
 3. Enable Pages: repo Settings, Pages, Source "GitHub Actions" (workflow is included).
 4. Login needs an OAuth step, because GitHub Pages cannot do it alone. Pick one:
    - **Netlify (simplest).** Host the site on Netlify (drag the folder in or connect the repo), then Site settings, Access control, OAuth, Install provider: GitHub (create a GitHub OAuth app with callback `https://api.netlify.com/auth/done`). `/admin/cms/` then works with no other change.
-   - **Stay on GitHub Pages.** Deploy a free OAuth proxy (for example `sterlingwes/decap-proxy` on Cloudflare Workers), then set `base_url` in `admin/config.yml` to its URL.
+   - **Stay on GitHub Pages.** Deploy a free OAuth proxy (for example `sterlingwes/decap-proxy` on Cloudflare Workers), then set `base_url` in `admin/cms/config.yml` to its URL.
 
 ## Edit locally without logging in
 
