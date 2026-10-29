@@ -1,22 +1,14 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Team · MAD Club</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css"></head><body>
-<main id="main"><div class="wrap">
-<div class="page-head"><p class="eyebrow">The team</p><h1>The people behind MAD</h1></div>
-<h3 class="sem">Core team 2025-26</h3>
-<div class="grid" id="core"></div>
-<h3 class="sem">Earlier teams</h3>
-<div class="grid">
-<div class="card person"><div class="avatar">C</div><b>Chiranjeevi</b><small>President, 2024-25</small></div>
-<div class="card person"><div class="avatar">L</div><b>Likitha K</b><small>Vice President, 2024-25</small></div>
-</div>
-<p class="lead" style="margin:24px 0 60px">Teams for 23-24 and 26-27 follow the same 11 roles: president, vice-president, secretary, treasurer, and a chair and vice chair for each of the Program, Project and Marketing committees plus a Review chair.</p>
-</div></main>
+<title>Team | MAD Club</title>
+<meta name="description" content="Mobile App Development Club at New Horizon College of Engineering. The core team and earlier teams.">
+<meta property="og:title" content="Team | MAD Club"><meta property="og:description" content="Mobile App Development Club at New Horizon College of Engineering. The core team and earlier teams."><meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{document.documentElement.dataset.skin=localStorage.getItem("skin")||"night"}catch(e){}</script>
+</head><body data-page="team">
+<main id="main"><noscript><div class="wrap page-head"><h1>Team</h1><p class="lead">This site needs JavaScript to show its content.</p></div></noscript></main>
 <script src="assets/site.js"></script>
-<script>
-const T=[["Sujay K","President"],["Manushree M","Vice President"],["Sathvikha Manish","Secretary"],["Marylin Nithika","Treasurer"],["Hari Prasad S","Program Chair"],["Prajna R","Program Vice Chair"],["Poojitha Subramanyam","Project Chair"],["Rajeev Sharma","Project Vice Chair"],["Mohammed Faidh","Marketing Chair"],["Mrinal Satheesh","Marketing Vice Chair"],["Sanjay Padmaraj","Review Chair"]];
-document.getElementById("core").innerHTML=T.map(([n,r])=>`<div class="card person reveal"><div class="avatar">${n[0]}</div><b>${n}</b><small>${r}</small></div>`).join("");
-document.querySelectorAll(".reveal").forEach(e=>e.classList.add("in"));
-</script></body></html>
+</body></html>

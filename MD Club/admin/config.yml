@@ -1,0 +1,124 @@
+# Decap CMS config. Setup steps are in README.md.
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO   # e.g. 123sanjaypadmaraj/md-club
+  branch: main
+  # base_url: https://YOUR-OAUTH-PROXY     # only if the site is NOT on Netlify (see README)
+
+local_backend: true   # lets `npx decap-server` edit files locally without logging in
+
+media_folder: photos
+public_folder: /photos
+site_url: https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO
+display_url: https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO
+
+collections:
+  - name: pages
+    label: Site content
+    files:
+      - name: site
+        label: Home, About and Contact text
+        file: content/site.json
+        fields:
+          - { name: name, label: Short name, widget: string }
+          - { name: full_name, label: Full club name, widget: string }
+          - { name: college, label: College, widget: string }
+          - { name: college_short, label: College short name, widget: string }
+          - { name: established, label: Year established, widget: string }
+          - { name: tagline, label: Tagline, widget: string }
+          - { name: instagram, label: Instagram URL, widget: string }
+          - { name: instagram_handle, label: Instagram handle, widget: string }
+          - { name: hero_title, label: Home headline, widget: text }
+          - { name: hero_lead, label: Home intro paragraph, widget: text }
+          - name: stats
+            label: Home statistics
+            widget: list
+            fields:
+              - { name: value, label: Figure, widget: string }
+              - { name: label, label: Label, widget: string }
+          - name: highlights
+            label: Highlights
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+          - { name: why_title, label: Why-join heading, widget: string }
+          - { name: why_lead, label: Why-join intro, widget: text }
+          - name: why
+            label: Why-join points
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+          - { name: cta_title, label: Call-to-action heading, widget: string }
+          - { name: cta_text, label: Call-to-action text, widget: string }
+          - name: about
+            label: About page
+            widget: object
+            fields:
+              - { name: who, label: Who we are, widget: text }
+              - { name: objective, label: Objective, widget: text }
+              - { name: outcomes, label: Outcomes, widget: text }
+              - name: functions
+                label: What we do
+                widget: list
+                fields:
+                  - { name: title, label: Title, widget: string }
+                  - { name: text, label: Text, widget: text }
+          - name: contact
+            label: Contact page
+            widget: object
+            fields:
+              - { name: coordinators, label: Coordinators, widget: string }
+              - { name: form_endpoint, label: "Form endpoint (Formspree URL, leave empty to hide the form)", widget: string, required: false }
+      - name: events
+        label: Events
+        file: content/events.json
+        fields:
+          - name: events
+            label: Events
+            widget: list
+            summary: "{{fields.name}} - {{fields.semester}}"
+            fields:
+              - { name: slug, label: URL slug (letters, numbers, dashes), widget: string }
+              - { name: name, label: Name, widget: string }
+              - { name: semester, label: "Semester (e.g. 24-25 Odd Sem)", widget: string }
+              - { name: flagship, label: Flagship event, widget: boolean, default: false }
+              - { name: description, label: Description, widget: text }
+              - { name: photos, label: Photos, widget: list, field: { name: photo, label: Photo, widget: image }, required: false }
+      - name: team
+        label: Team
+        file: content/team.json
+        fields:
+          - { name: current_year, label: Current team year, widget: string }
+          - name: current
+            label: Current team
+            widget: list
+            summary: "{{fields.name}} - {{fields.role}}"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+          - name: earlier
+            label: Earlier teams
+            widget: list
+            summary: "{{fields.name}} - {{fields.role}} ({{fields.year}})"
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: role, label: Role, widget: string }
+              - { name: year, label: Year, widget: string }
+      - name: achievements
+        label: Achievements
+        file: content/achievements.json
+        fields:
+          - name: stats
+            label: Figures
+            widget: list
+            fields:
+              - { name: value, label: Figure, widget: string }
+              - { name: label, label: Label, widget: string }
+          - name: apps
+            label: Apps built by members
+            widget: list
+            fields:
+              - { name: name, label: Name, widget: string }
+              - { name: text, label: Description, widget: text }

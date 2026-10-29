@@ -1,0 +1,13 @@
+{
+  "events": [
+    { "slug": "mindspark23", "name": "Mindspark'23", "semester": "23-24 Odd Sem", "flagship": true, "description": "Our first flagship event: WikiWhiz, UI Clash and CodeMaze over 3 rounds with 150+ participants.", "photos": [] },
+    { "slug": "innowave24", "name": "InnoWave'24", "semester": "23-24 Odd Sem", "flagship": true, "description": "Trivial Battle and Pitchpoint over 2 rounds with 150+ participants. Held January 2024.", "photos": [] },
+    { "slug": "techsync24", "name": "TechSync'24", "semester": "23-24 Even Sem", "flagship": true, "description": "A cross-club event with 4 clubs: Visual Recall, Car Racing and Construction over 3 rounds.", "photos": [] },
+    { "slug": "connect24", "name": "Connect'24", "semester": "23-24 Even Sem", "flagship": true, "description": "Flagship networking and collaboration event.", "photos": [] },
+    { "slug": "pixel-pursuit24", "name": "Pixel Pursuit'24", "semester": "24-25 Odd Sem", "flagship": false, "description": "A pixel-themed challenge event.", "photos": [] },
+    { "slug": "codathon", "name": "Codathon", "semester": "24-25 Even Sem", "flagship": false, "description": "A coding marathon for all students.", "photos": [] },
+    { "slug": "appsylum25", "name": "Appsylum'25", "semester": "25-26 Odd Sem", "flagship": false, "description": "App building showdown.", "photos": [] },
+    { "slug": "game-design26", "name": "Game Design'26", "semester": "25-26 Even Sem", "flagship": false, "description": "Game design challenge.", "photos": [] },
+    { "slug": "gitout26", "name": "Gitout'26", "semester": "25-26 Even Sem", "flagship": false, "description": "Hands-on Git and collaboration event.", "photos": [] }
+  ]
+}

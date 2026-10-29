@@ -1,0 +1,20 @@
+{
+  "current_year": "2025-26",
+  "current": [
+    { "name": "Sujay K", "role": "President" },
+    { "name": "Manushree M", "role": "Vice President" },
+    { "name": "Sathvikha Manish", "role": "Secretary" },
+    { "name": "Marylin Nithika", "role": "Treasurer" },
+    { "name": "Hari Prasad S", "role": "Program Committee Chair" },
+    { "name": "Prajna R", "role": "Program Committee Vice Chair" },
+    { "name": "Poojitha Subramanyam", "role": "Project Committee Chair" },
+    { "name": "Rajeev Sharma", "role": "Project Committee Vice Chair" },
+    { "name": "Mohammed Faidh", "role": "Marketing Committee Chair" },
+    { "name": "Mrinal Satheesh", "role": "Marketing Committee Vice Chair" },
+    { "name": "Sanjay Padmaraj", "role": "Review Committee Chair" }
+  ],
+  "earlier": [
+    { "name": "Chiranjeevi", "role": "President", "year": "2024-25" },
+    { "name": "Likitha K", "role": "Vice President", "year": "2024-25" }
+  ]
+}

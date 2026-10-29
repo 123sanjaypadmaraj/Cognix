@@ -1,26 +1,14 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Event · MAD Club</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css"></head><body>
-<main id="main"><div class="wrap">
-<div class="page-head"><p class="eyebrow" id="sem"></p><h1 id="name"></h1><p class="lead" id="desc"></p></div>
-<div class="gallery" id="gallery"></div>
-<p style="margin:32px 0 60px"><a class="btn" href="events.html">All events</a></p>
-</div></main>
+<title>Event | MAD Club</title>
+<meta name="description" content="Mobile App Development Club at New Horizon College of Engineering. Event details and photos.">
+<meta property="og:title" content="Event | MAD Club"><meta property="og:description" content="Mobile App Development Club at New Horizon College of Engineering. Event details and photos."><meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script>try{document.documentElement.dataset.skin=localStorage.getItem("skin")||"night"}catch(e){}</script>
+</head><body data-page="event">
+<main id="main"><noscript><div class="wrap page-head"><h1>Event</h1><p class="lead">This site needs JavaScript to show its content.</p></div></noscript></main>
 <script src="assets/site.js"></script>
-<script>
-const k = new URLSearchParams(location.search).get("e"), e = EVENTS[k];
-if (!e) { document.getElementById("name").textContent = "Event not found"; }
-else {
-  document.title = e.name + " · MAD Club";
-  document.getElementById("name").textContent = e.name;
-  document.getElementById("sem").textContent = e.sem;
-  document.getElementById("desc").textContent = e.desc;
-  const g = document.getElementById("gallery");
-  // To use real photos: put files in photos/<slug>/1.jpg, 2.jpg ... and they replace the placeholders.
-  g.innerHTML = e.photos ? Array.from({length:e.photos},(_,i)=>
-    `<div class="shot" ><img loading="lazy" src="photos/${k}/${i+1}.jpg" alt="${e.name} photo ${i+1}" onerror="this.remove()">${i+1}</div>`).join("")
-    : `<p class="lead">Photo gallery coming soon.</p>`;
-}
-</script></body></html>
+</body></html>

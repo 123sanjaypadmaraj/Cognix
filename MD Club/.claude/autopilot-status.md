@@ -70,3 +70,9 @@ Design decisions already made (so no task needs to ask):
 - Verification (project has no test suite, so used each task's done-when checks): grep for gradient/--grad/.grad empty; Unicode pictograph grep empty; `node --check assets/site.js` ok; headless Chrome screenshot of index.html rendered correctly. Lighthouse and 360px checks not yet run (task 8).
 - Not done: tasks 4-9. Known leftovers: inline `style=` attributes and index-numbering across two sections on home (04-07) are replaced in task 4; `hue` field in EVENTS is unused until task 5 removes it.
 - Next session: tasks 4 (home), 5 (events/gallery), 6 (about/team/achievements).
+
+### 2026-10-29 - direction change (user request)
+- Superseded the Plex/burnt-orange plan above (tasks 4-9 are obsolete). New direction: three switchable skins (Night, Pop, Raw), content-driven pages (content/*.json) and a Decap CMS at /admin (GitHub login). Loop stopped.
+- Built: content/*.json, admin/ (Decap 3.1.10 + config.yml), assets/site.js renderer, assets/style.css skins, regenerated 8 page shells, favicon, robots.txt, README.md setup.
+- Verified: node --check ok; headless screenshots of all three skins; /admin/ renders the Decap login. Not verified: real GitHub login (needs repo + OAuth setup), 360px mobile, Lighthouse.
+- Next: user sets repo/OAuth in README; then mobile and a11y pass; add real event photos via /admin.

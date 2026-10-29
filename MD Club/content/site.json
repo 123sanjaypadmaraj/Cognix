@@ -1,0 +1,47 @@
+{
+  "name": "MAD Club",
+  "full_name": "Mobile App Development Club",
+  "college": "New Horizon College of Engineering",
+  "college_short": "NHCE",
+  "established": "2023",
+  "tagline": "Code..Fun..Repeat",
+  "instagram": "https://www.instagram.com/md_club_nhce/",
+  "instagram_handle": "@md_club_nhce",
+  "hero_title": "We build apps. Then we build the people who build them.",
+  "hero_lead": "A student club at New Horizon College of Engineering. Small teams, real projects, workshops and hackathons on Android, Flutter and modern mobile development.",
+  "stats": [
+    { "value": "150+", "label": "participants at every event" },
+    { "value": "4", "label": "flagship events run end to end" },
+    { "value": "11", "label": "core team roles" },
+    { "value": "2023", "label": "year we started" }
+  ],
+  "highlights": [
+    { "title": "Active participation", "text": "Over 150 participants at every event." },
+    { "title": "Informative workshops", "text": "Hands-on sessions built for practical takeaways." },
+    { "title": "App development", "text": "Learn the tools and techniques for building real apps." }
+  ],
+  "why_title": "Why join us",
+  "why_lead": "We promote learning and creating modern mobile apps through small teams working on real projects.",
+  "why": [
+    { "title": "Real projects", "text": "Take ideas through to launch." },
+    { "title": "Skill building", "text": "Programming, design and problem-solving through practice." },
+    { "title": "Real community", "text": "Creativity, teamwork, entrepreneurship and learning." },
+    { "title": "Career ready", "text": "Collaboration skills for professional settings." }
+  ],
+  "cta_title": "New members welcome every semester",
+  "cta_text": "Hackathons, design sprints and a community that ships.",
+  "about": {
+    "who": "A student group that promotes learning and building modern mobile apps. Members work in small teams on practical projects through workshops, hackathons and design challenges each semester.",
+    "objective": "Strengthen mobile programming skills, give students a way to see their ideas become real, and build a community around creativity, teamwork, entrepreneurship and learning.",
+    "outcomes": "Better programming and creative skills, familiarity with current tools, and teamwork skills for professional settings.",
+    "functions": [
+      { "title": "Flagship events", "text": "Coding challenges, UI design sprints and pitch competitions (Mindspark, InnoWave, TechSync), open to all students." },
+      { "title": "Hands-on workshops", "text": "The full app process, from idea and design to a working build." },
+      { "title": "Four committees", "text": "Program, Project, Marketing and Review keep everything running." }
+    ]
+  },
+  "contact": {
+    "coordinators": "Sujay K, President. M Manushree, Vice President.",
+    "form_endpoint": ""
+  }
+}

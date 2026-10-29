@@ -1,0 +1,11 @@
+{
+  "stats": [
+    { "value": "150+", "label": "at every flagship event, four semesters running" },
+    { "value": "4", "label": "flagships planned and run end to end" },
+    { "value": "4", "label": "clubs joined TechSync'24" }
+  ],
+  "apps": [
+    { "name": "Evently", "text": "A campus event hub with event listings, schedules and notifications." },
+    { "name": "Treasure-hunt app", "text": "Clues, a virtual map, augmented reality, geolocation and interactive puzzles." }
+  ]
+}
