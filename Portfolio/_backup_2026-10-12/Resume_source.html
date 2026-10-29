@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sanjay Padmaraj — Resume</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Calibri, "Segoe UI", Arial, sans-serif; font-size: 8.8pt; line-height: 1.12; color: #111; padding: 7mm 13mm 4mm; }
+  a { color: #111; text-decoration: none; }
+  h1 { font-size: 21pt; letter-spacing: .5px; text-align: center; font-weight: 700; }
+  .contact { text-align: center; font-size: 9.5pt; margin-top: 2px; color: #222; }
+  .contact span + span::before { content: "  |  "; color: #888; }
+  h2 { font-size: 10.5pt; letter-spacing: 1.2px; text-transform: uppercase; border-bottom: 1px solid #111; margin: 6px 0 3px; padding-bottom: 1px; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .row b { font-weight: 700; }
+  .row .meta { font-size: 9.5pt; color: #333; white-space: nowrap; }
+  .sub { font-size: 9.5pt; color: #333; font-style: italic; }
+  ul { margin: 1px 0 4px 15px; }
+  li { margin-bottom: 0; padding-left: 1px; }
+  .proj { margin-top: 2px; }
+  .skills div { margin-bottom: 1px; padding-left: 96px; text-indent: -96px; }
+  .skills b { display: inline-block; min-width: 92px; text-indent: 0; }
+</style>
+</head>
+<body>
+
+<h1>SANJAY PADMARAJ</h1>
+<div class="contact">
+  <span>Bangalore, India</span><span>+91 63632 57248</span><span><a href="mailto:padmarajsanjay@gmail.com">padmarajsanjay@gmail.com</a></span>
+</div>
+<div class="contact">
+  <span><a href="https://www.linkedin.com/in/sanjay-padmaraj-044233247/">linkedin.com/in/sanjay-padmaraj-044233247</a></span><span><a href="https://github.com/123sanjaypadmaraj">github.com/123sanjaypadmaraj</a></span><span><a href="https://123sanjaypadmaraj.github.io/sanjaypadmaraj.github.io-portfolio/">Portfolio</a></span>
+</div>
+
+<h2>Education</h2>
+<div class="row"><span><b>New Horizon College of Engineering</b>, Bangalore</span><span class="meta">Expected 2029</span></div>
+<div class="row"><span class="sub">B.E. Computer Science &amp; Engineering</span><span class="meta">CGPA: 9.75 / 10</span></div>
+
+<h2>Projects</h2>
+
+<div class="proj">
+  <div class="row"><span><b>CampusOS</b> — unified campus-life platform</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/CampusOS">github.com/123sanjaypadmaraj/CampusOS</a></span></div>
+  <div class="sub">React 18, TypeScript, Vite, Tailwind CSS, TanStack Query, Supabase (PostgreSQL, Auth, Storage, Edge Functions), Playwright</div>
+  <ul>
+    <li>Built a full-stack web platform that brings campus events, clubs, a community feed, hackathon team-matching, resource booking and issue reporting into one app.</li>
+    <li>Designed the backend on Supabase and integrated Razorpay payments (test mode).</li>
+    <li>Wrote unit and end-to-end tests (Jest, Testing Library, Playwright) and set up a GitHub Actions CI pipeline; 128 commits.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Club Hub</b> — co-curricular club management app</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Club-App">github.com/123sanjaypadmaraj/Club-App</a></span></div>
+  <div class="sub">Next.js, TypeScript, Supabase (PostgreSQL, Auth, RLS), Vitest</div>
+  <ul>
+    <li>Built one app for ~20 clubs: event registration with waitlist and QR tickets, check-in, feedback and an admin performance dashboard; participant data secured with Postgres row-level security.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>AI WordPress Builder</b> — chat-driven website builder</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/AI-Wordpress-Website-">github.com/123sanjaypadmaraj/AI-Wordpress-Website-</a></span></div>
+  <div class="sub">TypeScript, Docker, WP-CLI, Playwright, LLMs</div>
+  <ul>
+    <li>Built an agent that turns a chat description into a real WordPress site in an isolated Docker stack (theme, pages, plugins), with chat edits and undo, audit logging and automated smoke tests.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Aero Engine Digital Twin</b> — Smart India Hackathon prototype</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Aero-piston-engine-simulation">github.com/123sanjaypadmaraj/Aero-piston-engine-simulation</a></span></div>
+  <div class="sub">Node.js, Express, Socket.IO, JavaScript</div>
+  <ul>
+    <li>Simulated a 3-UAV fleet streaming 13 sensors per engine with 9 injectable fault scenarios; z-score and threshold rules predict a health score and remaining useful life on a live dashboard.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Smart Bandage</b> — wearable biosensor software platform</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Smart-Bandage">github.com/123sanjaypadmaraj/Smart-Bandage</a></span></div>
+  <div class="sub">Python, FastAPI, React, React Native, Docker</div>
+  <ul>
+    <li>Built the software stack against a simulated sensor: signal processing, FastAPI backend, React and mobile apps, anomaly detection and AI insights (159 tests).</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>C Visualizer</b> — interactive C learning tool</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Code-Visualizer">github.com/123sanjaypadmaraj/Code-Visualizer</a></span></div>
+  <div class="sub">Next.js, Tailwind CSS, CodeMirror</div>
+  <ul>
+    <li>Wrote an in-browser C interpreter that draws arrays, pointers, structs, stack and heap step by step with plain-English explanations; AI features are optional.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Smart Blind Stick</b> — AI + IoT assistive device</span><span class="meta"><b>Provisional patent filed</b></span></div>
+  <div class="sub">Sensors, embedded systems, mobile apps</div>
+  <ul>
+    <li>Designed an assistive stick for visually impaired users combining sensor-based obstacle detection with navigation assistance on embedded hardware.</li>
+    <li>Built dual mobile applications, one for the user and one for the caregiver, for real-time monitoring and communication.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>NHCE STEM Club Website &amp; RAG Chatbot</b></span><span class="meta"><a href="https://newhorizonindia.edu/co-curricular/stem/">newhorizonindia.edu/co-curricular/stem</a></span></div>
+  <div class="sub">WordPress, Retrieval-Augmented Generation, Hugging Face LLMs, prompt engineering</div>
+  <ul>
+    <li>Designed and built the official responsive STEM Club website in WordPress and maintain it with the department.</li>
+    <li>Built a RAG chatbot on Hugging Face LLMs, tuned prompts to improve answer accuracy, and deployed it on the live site for student queries.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>LinkedIn Profile Matcher</b></span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/LinkedIn-Profile-Matcher">github.com/123sanjaypadmaraj/LinkedIn-Profile-Matcher</a></span></div>
+  <div class="sub">Python, Streamlit, Sentence-Transformers, scikit-learn, Ollama</div>
+  <ul>
+    <li>Built a Streamlit app that compares two LinkedIn profiles (PDF, TXT or JSON): extracts skills and scores similarity using sentence-embedding cosine similarity.</li>
+    <li>Added skill-overlap charts and keyword word clouds, plus optional local LLM insights (Mistral, LLaMA, Gemma via Ollama).</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>AI Data Assistant</b></span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/AI_Data_Assistant">github.com/123sanjaypadmaraj/AI_Data_Assistant</a></span></div>
+  <div class="sub">Python, Flask, Pandas, Ollama (Mistral)</div>
+  <ul>
+    <li>Built a Flask app where users upload CSV or Excel datasets and ask questions in plain English; a local Mistral model generates the pandas code that answers each question.</li>
+  </ul>
+</div>
+
+<h2>Technical Skills</h2>
+<div class="skills">
+  <div><b>Languages:</b> Python, TypeScript, JavaScript, C, HTML/CSS</div>
+  <div><b>Web &amp; Backend:</b> React, Next.js, Vite, Tailwind CSS, Flask, FastAPI, Node.js, Supabase, PostgreSQL</div>
+  <div><b>AI / ML:</b> RAG, LLM applications, prompt engineering, Hugging Face, Sentence-Transformers, Ollama, scikit-learn, Pandas, NumPy</div>
+  <div><b>Tools &amp; Testing:</b> Git, GitHub Actions, Docker, Jest, Vitest, Playwright, Streamlit</div>
+  <div><b>Hardware:</b> IoT systems, sensor integration, embedded prototyping</div>
+</div>
+
+<h2>Achievements</h2>
+<ul>
+  <li><b>1st Place:</b> UDAAN Intra-Institutional Business Plan Competition 2026; E=mc² STEM Expo 2026; Algo Relay (NHCE MCA Dept.)</li>
+  <li><b>2nd Place:</b> QuantumX Intercollege Hardware Tech Expo 2026. <b>3rd Place:</b> Nexgen Convergence Hardware Hustle Tech Expo</li>
+  <li><b>Provisional Patent Holder:</b> Smart Blind Stick for Visually Impaired Individuals</li>
+</ul>
+
+<h2>Leadership &amp; Activities</h2>
+<ul>
+  <li>Active member, STEM Club, NHCE (2025–2026)</li>
+  <li>Host, International IEEE Conference ICEMCSI (June 2026)</li>
+  <li>Volunteer, BBMP Census of India 2027</li>
+</ul>
+
+<h2>Certifications</h2>
+<ul>
+  <li>Data Analytics (IITM) &nbsp;·&nbsp; AI in Physics (IITM) &nbsp;·&nbsp; C Programming (IIT Bombay)</li>
+</ul>
+
+</body>
+</html>

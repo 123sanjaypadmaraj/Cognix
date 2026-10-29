@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sanjay Padmaraj — Resume</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Calibri, Arial, sans-serif; font-size: 9.5pt; line-height: 1.15; color: #111; padding: 8mm 12.7mm 6mm; }
+  a { color: #111; text-decoration: none; }
+  h1 { font-size: 20pt; letter-spacing: .5px; text-align: center; font-weight: 700; }
+  .contact { text-align: center; font-size: 9.5pt; margin-top: 2px; color: #222; }
+  .contact span + span::before { content: "  |  "; color: #777; }
+  h2 { font-size: 11pt; letter-spacing: 1px; text-transform: uppercase; border-bottom: 1px solid #111; margin: 5px 0 3px; padding-bottom: 1px; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .row b { font-weight: 700; }
+  .row .meta { color: #222; white-space: nowrap; }
+  .sub { color: #333; font-style: italic; }
+  ul { margin: 1px 0 3px 15px; }
+  li { padding-left: 1px; }
+  .proj { margin-top: 3px; }
+  .skills div { padding-left: 96px; text-indent: -96px; }
+  .skills b { display: inline-block; min-width: 96px; text-indent: 0; }
+</style>
+</head>
+<body>
+
+<h1>SANJAY PADMARAJ</h1>
+<div class="contact">
+  <span>Bangalore, India</span><span>+91 63632 57248</span><span><a href="mailto:padmarajsanjay@gmail.com">padmarajsanjay@gmail.com</a></span><span><a href="https://github.com/123sanjaypadmaraj">github.com/123sanjaypadmaraj</a></span>
+</div>
+<div class="contact">
+  <span><a href="https://www.linkedin.com/in/sanjay-padmaraj-044233247/">linkedin.com/in/sanjay-padmaraj-044233247</a></span><span><a href="https://123sanjaypadmaraj.github.io/sanjaypadmaraj.github.io-portfolio/">123sanjaypadmaraj.github.io/sanjaypadmaraj.github.io-portfolio</a></span>
+</div>
+
+<h2>Education</h2>
+<div class="row"><span><b>New Horizon College of Engineering</b>, Bangalore, India</span><span class="meta">2025 – 2029 (expected)</span></div>
+<div class="row"><span class="sub">Bachelor of Engineering (B.E.), Computer Science &amp; Engineering</span><span class="meta">CGPA: 9.75 / 10</span></div>
+
+<h2>Technical Skills</h2>
+<div class="skills">
+  <div><b>Languages:</b> Python, TypeScript, JavaScript, C, C++, SQL, HTML/CSS</div>
+  <div><b>Web &amp; Backend:</b> React, Next.js, Node.js, Express, FastAPI, Flask, Tailwind CSS, PostgreSQL, Supabase, Socket.IO</div>
+  <div><b>AI / ML:</b> RAG, LLM and multi-agent apps (LangGraph), Hugging Face, Sentence-Transformers, scikit-learn, Pandas, NumPy</div>
+  <div><b>Tools &amp; Testing:</b> Git, GitHub Actions (CI), Docker, Jest, Vitest, Playwright</div>
+</div>
+
+<h2>Projects</h2>
+
+<div class="proj">
+  <div class="row"><span><b>CampusOS</b> — unified campus-life platform</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/CampusOS">github.com/123sanjaypadmaraj/CampusOS</a></span></div>
+  <div class="sub">React 18, JavaScript/TypeScript, Vite, Tailwind CSS, TanStack Query, Supabase (PostgreSQL, Auth, Edge Functions)</div>
+  <ul>
+    <li>Built a full-stack platform that consolidates six campus workflows (events, clubs, community feed, hackathon team-matching, resource booking, issue reporting) otherwise spread across chat groups, forms and separate portals.</li>
+    <li>Designed the PostgreSQL schema and Supabase backend; built Razorpay order and webhook handling in Edge Functions (test mode).</li>
+    <li>Set up a five-stage GitHub Actions pipeline (lint, typecheck, unit tests, build, end-to-end) with Jest and Playwright.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Kotlex</b> — multi-agent marketing campaign builder (HACKERING 2.0)</span><span class="meta"><a href="https://github.com/hackering-2-0/HR2-AI-F0C5415B">github.com/hackering-2-0/HR2-AI-F0C5415B</a></span></div>
+  <div class="sub">Python, FastAPI, LangGraph, Server-Sent Events, Pillow, Tesseract OCR, pytest</div>
+  <ul>
+    <li>Built a round table of 12 LLM agents that turns a café owner's voice note (Kannada, Hindi or English) into multilingual copy, a poster and a reel, orchestrated with LangGraph and streamed live to the browser.</li>
+    <li>Wrote a code-only Fact Guard that blocks drafts whose discount, price, days or times differ from the owner-confirmed facts, a dependency graph that regenerates only the assets a change affects, and an LLM router with fallback; 500+ tests in CI.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Club Hub</b> — multi-club management app</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Club-App">github.com/123sanjaypadmaraj/Club-App</a></span></div>
+  <div class="sub">Next.js, TypeScript, Supabase (PostgreSQL, Auth, Row-Level Security), Vitest</div>
+  <ul>
+    <li>Built a three-role app (visitor, club lead, admin) for a college's co-curricular clubs: event registration with waitlists and QR tickets, check-in, feedback, CSV exports, and an admin dashboard comparing club performance over 3/6/12 months.</li>
+    <li>Restricted participant data (names, emails, phones) with Postgres row-level security so only a club's leads and the admin can read it, even through direct API calls; made event-capacity checks race-safe in SQL.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>AI WordPress Builder</b> — chat-driven website builder</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/AI-Wordpress-Website-">github.com/123sanjaypadmaraj/AI-Wordpress-Website-</a></span></div>
+  <div class="sub">TypeScript, Docker Compose, WP-CLI, Playwright, LLMs</div>
+  <ul>
+    <li>Built an agent that turns a chat brief into a structured site specification, then builds a real WordPress site (theme, pages, navigation, plugins) through WP-CLI inside an isolated per-project Docker Compose stack.</li>
+    <li>Routed every tool call through one dispatcher enforcing permission tiers, theme/plugin allowlists and audit logging; added checkpointed chat edits with undo (database restore) and automated Playwright smoke tests.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>C Visualizer</b> — interactive C learning tool</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Code-Visualizer">github.com/123sanjaypadmaraj/Code-Visualizer</a></span></div>
+  <div class="sub">Next.js, TypeScript, Tailwind CSS, CodeMirror, Vitest, Playwright</div>
+  <ul>
+    <li>Wrote a C interpreter in TypeScript that runs in the browser and draws arrays, pointers, structs, stack and heap step by step, with a trace table and a plain-English explanation of every step.</li>
+    <li>Added live syntax-error detection with one-click fixes and optional AI autocomplete that falls back across four LLM providers; tested with Vitest (including a gcc output comparison) and Playwright.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Aero Engine Digital Twin</b> — Smart India Hackathon prototype</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Aero-piston-engine-simulation">github.com/123sanjaypadmaraj/Aero-piston-engine-simulation</a></span></div>
+  <div class="sub">Node.js, Express, Socket.IO, three.js, JavaScript</div>
+  <ul>
+    <li>Simulated telemetry for a 3-UAV fleet (13 sensors per engine, 9 injectable fault scenarios), streamed over Socket.IO every 2 seconds to a live dashboard and a three.js 3D engine model.</li>
+    <li>Implemented fault prediction from rolling z-scores and threshold rules, producing a 0–100 health score, an estimate of remaining useful life and a predicted fault type without an external ML runtime.</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Smart Bandage</b> — wearable biosensor software stack</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/Smart-Bandage">github.com/123sanjaypadmaraj/Smart-Bandage</a></span></div>
+  <div class="sub">Python, FastAPI, PostgreSQL, WebSockets, React, React Native, Docker</div>
+  <ul>
+    <li>Built the signal-processing pipeline, FastAPI backend, React dashboard and React Native app against a simulated sensor with 7 fault scenarios; added anomaly detection, alerts and Gemini-backed insights (159 tests in CI).</li>
+  </ul>
+</div>
+
+<div class="proj">
+  <div class="row"><span><b>Accident Detection Hardware</b> — ESP32 sensor node</span><span class="meta"><a href="https://github.com/123sanjaypadmaraj/AI-Traffic-Detection-Hardware">github.com/123sanjaypadmaraj/AI-Traffic-Detection-Hardware</a></span></div>
+  <div class="sub">C++, ESP32, PlatformIO, MPU6050, GPS, ultrasonic sensor</div>
+  <ul>
+    <li>Wrote ESP32 firmware reading an MPU6050 IMU, GPS and ultrasonic sensor that flags a possible accident from total acceleration.</li>
+  </ul>
+</div>
+
+<h2>Experience &amp; Leadership</h2>
+<div class="row"><span><b>STEM Club, New Horizon College of Engineering</b> — Member, website and AI chatbot</span><span class="meta">2025 – 2026</span></div>
+<ul>
+  <li>Built and maintain the club's official WordPress site on the college domain (<a href="https://newhorizonindia.edu/co-curricular/stem/">newhorizonindia.edu/co-curricular/stem</a>).</li>
+  <li>Built a retrieval-augmented (RAG) chatbot on Hugging Face LLMs and deployed it on the live site to answer student queries.</li>
+</ul>
+<div class="row"><span><b>International IEEE Conference ICEMCSI</b> — Host</span><span class="meta">June 2026</span></div>
+
+<h2>Patent, Achievements &amp; Certifications</h2>
+<ul>
+  <li><b>Provisional patent filed:</b> Smart Blind Stick, an AI + IoT assistive cane with obstacle detection and user and caregiver mobile apps.</li>
+  <li><b>1st place:</b> E=mc² STEM Expo 2026; UDAAN Intra-Institutional Business Plan Competition 2026; Algo Relay (NHCE MCA Dept.).</li>
+  <li><b>2nd place:</b> QuantumX Intercollege Hardware Tech Expo 2026. <b>3rd place:</b> Nexgen Convergence Hardware Hustle Tech Expo.</li>
+  <li><b>Certifications:</b> Data Analytics (IIT Madras) &nbsp;·&nbsp; AI in Physics (IIT Madras) &nbsp;·&nbsp; C Programming (IIT Bombay)</li>
+</ul>
+
+</body>
+</html>
